@@ -21,8 +21,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.Mod.EventHandler;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
-import net.minecraftforge.fml.relauncher.Side;
-import net.minecraftforge.fml.relauncher.SideOnly;
 
 @Mod(modid = AntiSpawnerCamping.MODID, name = AntiSpawnerCamping.NAME, version = AntiSpawnerCamping.VERSION)
 public class AntiSpawnerCamping
@@ -58,13 +56,13 @@ public class AntiSpawnerCamping
             if (spawner instanceof TileEntityMobSpawner && spawner.hasCapability(CapStorage.cap, null)) {
     			CapStorage storage = spawner.getCapability(CapStorage.cap, null);
             	for(EntityPlayerMP player : FMLCommonHandler.instance().getMinecraftServerInstance().getPlayerList().getPlayers()){
-            		//if(ArrayUtils.contains(SpawnerConfig.ignore, player.getName())) return;
+            		if(ArrayUtils.contains(SpawnerConfig.ignore, player.getName())) return;
             		if(player.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= SpawnerConfig.checkRadius){
             			
-            			//if(SpawnerConfig.debug) {
+            			if(SpawnerConfig.debug) {
             				logger.info("1: Current Players are: " + Arrays.toString(storage.currentPlayer().toArray()));
             				logger.info("Deducting spawn from " + pos + " for player " + player.getName() + ". " + storage.time() + " spawns remaining.");
-            			//}
+            			}
             			
             			if(!storage.currentPlayer().contains(player.getName())) {
             				storage.time(SpawnerConfig.max);
