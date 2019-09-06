@@ -1,0 +1,16 @@
+[
+{
+  "modid": "antispawnercamping",
+  "name": "Anti-Spawner Camping",
+  "description": "A simple mod to prevent the camping of mob spawners",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["Eleksploded"],
+  "credits": "",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
