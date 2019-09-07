@@ -13,9 +13,6 @@ public class SpawnerConfig {
 	@Comment("Max number of spawns before running commands on the player")
 	public static int max = 10;
 	
-	@Comment("Enable/Disable Debug outputs")
-	public static boolean debug = false;
-	
 	@Comment("Radius from the spawner to check for players")
 	public static int checkRadius = 10;
 	
