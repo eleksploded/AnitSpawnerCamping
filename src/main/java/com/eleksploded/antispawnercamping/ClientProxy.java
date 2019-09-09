@@ -12,8 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraftforge.event.entity.living.LivingSpawnEvent;
 import net.minecraftforge.fml.common.FMLCommonHandler;
 
-public class ServerProxy {
-	public void spawn(LivingSpawnEvent.SpecialSpawn e) {
+public class ClientProxy extends ServerProxy {
+	public void spawn(LivingSpawnEvent.SpecialSpawn e) {}
+	
+	public static void Singlespawn(LivingSpawnEvent.SpecialSpawn e) {
 		BlockPos pos = getSpawner(e);
         if (pos != null) {
         	TileEntity spawner = e.getWorld().getTileEntity(pos);
@@ -23,10 +25,10 @@ public class ServerProxy {
             		if(ArrayUtils.contains(SpawnerConfig.ignore, player.getName())) return;
             		if(player.getDistance(pos.getX(), pos.getY(), pos.getZ()) <= SpawnerConfig.checkRadius){
             			
-            			if(SpawnerConfig.debug) {
+            			//if(SpawnerConfig.debug) {
             				//AntiSpawnerCamping.logger.info("1: Current Players are: " + Arrays.toString(storage.currentPlayer().toArray()));
             				AntiSpawnerCamping.logger.info("Deducting spawn from " + pos + " for player " + player.getName() + ". " + storage.time() + " spawns remaining.");
-            			}
+            			//}
             			
             			if(!storage.currentPlayer().contains(player.getName())) {
             				storage.time(SpawnerConfig.max);
@@ -63,11 +65,4 @@ public class ServerProxy {
             }  
         }
 	}
-	
-	public static BlockPos getSpawner(LivingSpawnEvent.SpecialSpawn event) {
-        if (event.getSpawner() != null) {
-            return event.getSpawner().getSpawnerPosition();
-        }
-        return null;
-    }
 }

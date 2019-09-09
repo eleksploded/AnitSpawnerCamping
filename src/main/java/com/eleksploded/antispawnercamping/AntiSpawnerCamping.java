@@ -2,6 +2,7 @@ package com.eleksploded.antispawnercamping;
 
 import org.apache.logging.log4j.Logger;
 
+import net.minecraft.client.Minecraft;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.tileentity.TileEntityMobSpawner;
@@ -24,7 +25,7 @@ public class AntiSpawnerCamping
 	public static final String VERSION = "1.0";
 	public static Logger logger;
 	
-	@SidedProxy(modId=AntiSpawnerCamping.MODID,clientSide="com.eleksploded.antispanwercamping.ClientProxy", serverSide="com.eleksploded.antispawnercamping.ServerProxy")
+	@SidedProxy(modId=AntiSpawnerCamping.MODID,clientSide="com.eleksploded.antispawnercamping.ClientProxy", serverSide="com.eleksploded.antispawnercamping.ServerProxy")
 	public static ServerProxy proxy;
 
 	@EventHandler
@@ -44,6 +45,13 @@ public class AntiSpawnerCamping
 	
 	@SubscribeEvent
 	public void spawn(LivingSpawnEvent.SpecialSpawn e){
+		try {
+			if(Minecraft.getMinecraft().isSingleplayer()) {
+				ClientProxy.Singlespawn(e);
+			}
+		} catch(NoClassDefFoundError ex) {
+			//if(SpawnerConfig.debug) logger.info("Running on server");
+		}
 		proxy.spawn(e);
 	}
 	

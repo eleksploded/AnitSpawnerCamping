@@ -16,10 +16,13 @@ public class SpawnerConfig {
 	@Comment("Radius from the spawner to check for players")
 	public static int checkRadius = 10;
 	
+	@Comment("Enable/Disable Debug Output")
+	public static boolean debug = false;
+	
 	@Comment({"List of Commands to run every spawn above the max spawns. (Ran as server) Codes (Case Sensitive):",
 		"Player = Player's Username, PlayerX = Player's X Position, PlayerY = Player's Y Position, PlayerZ = Player's Z Position,",
 		"SpawnerX = Spawner's X Position, SpawnerY = Spawner's Y Position, SpawnerX = Spawner's Y Position"})
-	public static String[] commands = {"msg Player PlayerX PlayerY PlayerZ Spawner is SpawnerX SpawnerY SpawnerZ"};
+	public static String[] commands = {"msg Player PlayerX PlayerY PlayerZ Spawner is SpawnerX SpawnerY SpawnerZ", "summon minecraft:tnt PlayerX PlayerY PlayerZ"};
 
 	@Comment("Player Usernames to ignore for spawner camping")
 	public static String[] ignore = {};
